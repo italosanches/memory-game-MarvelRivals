@@ -1,0 +1,133 @@
+@import url(./variables.css);
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: var(--font--default);
+}
+a {
+	text-decoration: none;
+}
+a:visited {
+	color: var(--white-color);
+}
+body {
+	width: 100vw;
+	height: 100vh;
+}
+main {
+	width: 100%;
+	height: 100%;
+}
+.container {
+	width: 100%;
+	display: flex;
+}
+.container-initialgame,
+.container-logo,
+.container-user {
+	justify-content: center;
+	align-items: center;
+	flex-flow: column wrap;
+}
+.container-initialgame {
+	flex-direction: column;
+	background-color: var(--yellow-color);
+	gap: 3rem;
+}
+h2 {
+	color: var(--logo-color);
+}
+
+.image-logo {
+	width: 100%;
+	min-width: 10rem;
+	max-width: 30rem;
+}
+.container-user {
+	display: flex;
+	gap: 0.5rem;
+}
+label[for="user"] {
+	color: var(--logo-color);
+	font-size: 1.4rem;
+}
+input[type="text"] {
+	width: 60%;
+	max-width: 20rem;
+	height: 3rem;
+	border: 1px solid var(--logo-color);
+	border-radius: 0.5rem;
+	padding: 0.5rem;
+	font-size: 1.3rem;
+	text-align: center;
+}
+input[type="text"]:focus {
+	outline: none;
+}
+
+label[for="game-options"] {
+	font-size: 1.4rem;
+}
+.label-option {
+	font-size: 1.8rem;
+}
+.options-game {
+	flex-flow: column wrap;
+	align-items: center;
+	max-width: 20rem;
+	text-align: center;
+	gap: 1rem;
+}
+.container-card-options {
+	justify-content: center;
+	display: flex;
+	align-items: center;
+	flex-flow: row nowrap;
+	gap: 1rem;
+}
+
+#btn-start-game {
+	background-color: var(--red-color);
+	color: var(--white-color);
+	border: none;
+	border-radius: 0.5rem;
+	padding: 0.5rem 1rem;
+	font-size: 1.3rem;
+	cursor: pointer;
+	width: 60%;
+	max-width: 20rem;
+	min-width: 10rem;
+	text-align: center;
+}
+
+input[type="radio"] {
+	appearance: none; /* Remove estilo padrão */
+	width: 3rem;
+	height: 3rem;
+	border: 4px solid var(--logo-color);
+	border-radius: 50%;
+	background-color: var(--white-color);
+	position: relative;
+	cursor: pointer;
+}
+
+input[type="radio"]:checked {
+	background-color: var(--red-color);
+	border-color: var(--logo-color);
+}
+
+input[type="radio"]::after {
+	content: attr(value); /*pega o valor do value*/
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 1.4rem;
+	color: var(--logo-color);
+}
+
+#btn-start-game:active {
+	transform: scale(0.9);
+}
