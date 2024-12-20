@@ -5,22 +5,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Index</title>
-  <link rel="stylesheet" href="./assets/css/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/index.css">
+  <script src="./scripts/index.js" defer></script>
 </head>
 
 <body>
-  <div class="container">
-    <div class="container-initialgame">
-      <img class="image-logo" src="./assets/images/logo.webp" alt="">
-      <h2>Memory Game</h2>
-      <div class="container-user">
-        <label for="user">Insira seu usuário.</label>
+  <main class="container">
+    <div class="container container-initialgame">
+      <div class="container container-logo">
+        <img class="image-logo" src="./assets/images/logo.webp" alt="">
+        <h2>Memory Game</h2>
+      </div>
+      <div class="container-user container">
+        <label for="user">Insira seu nick:</label>
         <input type="text" id="user" name="user">
       </div>
-      <a class="btn-start-game" href="">Iniciar jogo</a>
+      <div class="container options-game">
+        <label for="game-options">Selecione a quantidade de cartas</label>
+        <div class="container container-card-options">
+          <input type="radio" class="option-game" name="game-options" value="10" checked>
+          <input type="radio" class="option-game" name="game-options" value="20">
+          <input type="radio" class="option-game" name="game-options" value="30">
+        </div>
+      </div>
+      <a id="btn-start-game" href="">Iniciar jogo</a>
     </div>
-  </div>
+  </main>
 </body>
 
 </html>
