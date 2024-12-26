@@ -14,7 +14,7 @@ body {
 }
 header {
 	text-align: center;
-	margin-top: -1.2rem;
+	/* margin-top: -1.2rem; */
 }
 main {
 	margin-top: 1rem;
@@ -42,13 +42,16 @@ main {
 }
 
 .board-game {
-	/* display: grid;
-	grid-template-columns: repeat(6, minmax(120px, 1fr));
-	gap: 10px; Espaçamento entre as colunas */
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	gap: 10px; /*Espaçamento entre as colunas*/
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 1rem;
 }
 
 .card-game {
-	width: auto;
+	width: 100%;
 	height: 130px;
 	background-color: blue;
 	transform-style: preserve-3d;
@@ -101,4 +104,13 @@ main {
 }
 #btn-start-game:active {
 	transform: scale(0.9);
+}
+
+@media (min-width: 768px) {
+	.board-game {
+		grid-template-columns: repeat(4, 1fr);
+	}
+	.button-start {
+		padding-bottom: 0.8rem;
+	}
 }
