@@ -1,3 +1,5 @@
+document.querySelector("#btn-start-game").addEventListener("click", setSessionStorageInGameStart);
+
 function getOptionsAndUser() {
 	let optionsAndUser = {};
 	optionsAndUser["user"] = document.querySelector("#user").value;
@@ -8,5 +10,6 @@ function setSessionStorageInGameStart(e) {
 	e.preventDefault();
 	const usernameAndCardQuantity = getOptionsAndUser();
 	sessionStorage.setItem("userAndCardsQuantity", JSON.stringify(usernameAndCardQuantity));
+	console.log("foi");
 	window.location.href = "../game/game.html";
 }

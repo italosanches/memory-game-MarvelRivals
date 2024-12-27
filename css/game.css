@@ -33,7 +33,7 @@ main {
 	gap: 1rem;
 }
 
-.span-pontuation,
+#span-pontuation,
 .span-time {
 	color: var(--white-color);
 }
