@@ -1,8 +1,15 @@
 import createArrayOfRandomCards from "./cards.js";
 document.addEventListener("DOMContentLoaded", getUserAndOptionsFromSessionStorage);
-var cards = [];
 
 document.querySelector("#btn-start-game").addEventListener("click", startGame);
+const user = getUserAndOptionsFromSessionStorage();
+const cards = [];
+let currentScore = 0;
+let second = 0,
+	minute = 0,
+	hour = 0;
+let cron;
+const pointsToWin = user.cardsQuantity / 2;
 
 function getUserAndOptionsFromSessionStorage() {
 	const optionsAndUser = JSON.parse(window.sessionStorage.getItem("userAndCardsQuantity"));
@@ -24,6 +31,9 @@ function onClickCard() {
 	cards.push(cardInformations);
 	if (cards.length === 2) {
 		checkMatchingCards(cards);
+	}
+	if (currentScore == pointsToWin) {
+		endGame();
 	}
 }
 
@@ -60,26 +70,37 @@ function cardNotFound(arrayCards) {
 function addPoint() {
 	const pontuation = +document.querySelector("#span-pontuation").textContent;
 	document.querySelector("#span-pontuation").textContent = pontuation + 1;
+	currentScore++;
 }
 
 function createCard(card, indexCard) {
 	const cardElement = document.createElement("div");
+	const cardFront = createCardFront();
+	const cardBack = createCardBack(card);
 	cardElement.classList.add("card-game");
 	cardElement.id = indexCard;
-	cardElement.classList.contains;
-	const cardFront = document.createElement("div");
-	cardFront.classList.add("card-front");
-
-	const cardBack = document.createElement("div");
-	cardBack.classList.add("card-back");
-	cardBack.dataset.value = card.value;
-	cardBack.innerText = card.value;
 	cardElement.appendChild(cardFront);
 	cardElement.appendChild(cardBack);
 	cardElement.addEventListener("click", onClickCard);
 	return cardElement;
 }
 
+function createCardFront() {
+	const cardFront = document.createElement("div");
+	cardFront.classList.add("card-front");
+	const imageCardBack = document.createElement("img");
+	imageCardBack.src = "../assets/images/logo.webp";
+	imageCardBack.classList.add("img-cardFront");
+	cardFront.appendChild(imageCardBack);
+	return cardFront;
+}
+function createCardBack(card) {
+	const cardBack = document.createElement("div");
+	cardBack.classList.add("card-back");
+	cardBack.dataset.value = card.value;
+	cardBack.innerText = card.value;
+	return cardBack;
+}
 function renderCards(cards) {
 	const boardGame = document.querySelector(".board-game");
 	boardGame.innerHTML = "";
@@ -89,8 +110,63 @@ function renderCards(cards) {
 	});
 }
 
+function startTimer() {
+	cron = setInterval(() => {
+		timer();
+	}, 1000);
+}
+
+function resetTimer() {
+	document.getElementById("hour").innerText = "00";
+	document.getElementById("minute").innerText = "00";
+	document.getElementById("second").innerText = "00";
+	second = 0;
+	minute = 0;
+	hour = 0;
+	clearInterval(cron);
+}
+function timer() {
+	if ((second += 1) == 60) {
+		second = 0;
+		minute++;
+	}
+	if (minute == 60) {
+		minute = 0;
+		hour++;
+	}
+
+	document.getElementById("hour").innerText = hour >= 10 ? hour : `0${hour}`;
+	document.getElementById("minute").innerText = minute >= 10 ? minute : `0${minute}`;
+	document.getElementById("second").innerText = second >= 10 ? second : `0${second}`;
+}
+function pauseTimer() {
+	clearInterval(cron);
+}
+
+function populatePointsAndTimerEndGame() {
+	document.querySelector("#span-pontuation-endgame").textContent = currentScore > 10 ? currentScore : `0${currentScore}`;
+	let hour = document.getElementById("hour").innerText;
+	let minute = document.getElementById("minute").innerText;
+	let second = document.getElementById("second").innerText;
+	document.querySelector("#span-time-endgame").innerHTML = `${hour}:${minute}:${second}`;
+}
+function resetGame() {
+	resetTimer();
+	clearInterval(cron);
+	currentScore = 0;
+	document.querySelector("#span-pontuation").textContent = 0;
+}
+
 function startGame() {
-	const user = getUserAndOptionsFromSessionStorage();
+	resetGame();
 	const cards = createArrayOfRandomCards(user.cardsQuantity);
 	renderCards(cards);
+	startTimer();
+	document.querySelector("#btn-start-game").textContent = "Reiniciar jogo";
+}
+
+function endGame() {
+	pauseTimer();
+	document.querySelector("#overlay-endgame").classList.remove("hidden");
+	populatePointsAndTimerEndGame();
 }
