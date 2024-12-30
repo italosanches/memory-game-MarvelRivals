@@ -12,6 +12,9 @@ html {
 body {
 	background-color: var(--yellow-color);
 }
+a {
+	text-decoration: none;
+}
 header {
 	text-align: center;
 	/* margin-top: -1.2rem; */
@@ -22,7 +25,7 @@ main {
 
 .title-game {
 	color: var(--logo-color);
-	font-size: 3rem;
+	font-size: 3.6rem;
 	margin-top: 1rem;
 }
 .container-pontuation-timer {
@@ -34,7 +37,7 @@ main {
 }
 
 #span-pontuation,
-.span-time {
+#span-time {
 	color: var(--white-color);
 }
 .container-100 {
@@ -53,7 +56,6 @@ main {
 .card-game {
 	width: 100%;
 	height: 130px;
-	background-color: blue;
 	transform-style: preserve-3d;
 	transition: all 0.8s ease;
 	position: relative;
@@ -70,8 +72,14 @@ main {
 	border-radius: 1rem;
 }
 
+.img-cardFront {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+
 .card-front {
-	background-color: red;
+	background-color: var(--white-color);
 }
 .card-back {
 	background-color: aqua;
@@ -88,7 +96,7 @@ main {
 	justify-content: center;
 }
 
-#btn-start-game {
+.btn-game {
 	background-color: var(--red-color);
 	color: var(--white-color);
 	border: none;
@@ -102,10 +110,39 @@ main {
 	text-align: center;
 	margin-top: 0.5rem;
 }
-#btn-start-game:active {
+.btn-game:active {
 	transform: scale(0.9);
 }
-
+#overlay-endgame {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.8);
+	color: var(--white-color);
+	display: flex;
+	flex-flow: column wrap;
+	align-items: center;
+	justify-content: center;
+	gap: 0.6rem;
+	font-size: 24px;
+	z-index: 999;
+}
+#title-endgame {
+	font-size: 3rem;
+}
+.container-buttons-endgame {
+	gap: 1rem;
+	flex-wrap: wrap;
+	width: 100%;
+}
+.hidden {
+	display: none !important;
+}
+.btn-endgame {
+	max-width: 14rem;
+}
 @media (min-width: 768px) {
 	.board-game {
 		grid-template-columns: repeat(4, 1fr);
