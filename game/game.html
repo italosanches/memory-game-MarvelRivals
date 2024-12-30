@@ -9,29 +9,39 @@
   <link rel="stylesheet" href="../css/game.css">
 
 </head>
-<header class="container-100">
-  <h2 class="title-game">Memory Game</h2>
-  <div class="container-pontuation-timer container-100">
-    <div class="pontuation">
-      <p>Pontuação: <span id="span-pontuation">00</span></p>
-    </div>
-    <div class="timer">
-      <p>Timer: <span class="span-time">0:60</span></p>
-    </div>
-  </div>
-</header>
-<main>
-  <div class="board-game">
-
-  </div>
-  <div class="button-start">
-    <button id="btn-start-game">Iniciar Jogo</button>
-  </div>
-</main>
-
 
 <body>
+  <header class="container-100">
+    <h2 class="title-game">Memory Game</h2>
+    <div class="container-pontuation-timer container-100">
+      <div class="pontuation">
+        <p>Pontuação: <span id="span-pontuation">0</span></p>
+      </div>
+      <div class="timer">
+        <p>Timer: <span id="span-time">
+            <span id="hour">00</span>:<span id="minute">00</span>:<span id="second">00</span>
+          </span>
+        </p>
+      </div>
+    </div>
+  </header>
+  <main>
+    <div class="board-game">
+    </div>
+    <div class="button-start">
+      <button id="btn-start-game" class="btn-game">Iniciar Jogo</button>
+    </div>
+  </main>
+  <div id="overlay-endgame" class="hidden">
+    <h3 id="title-endgame">Fim de jogo!</h3>
+    <p>Pontos: <span id="span-pontuation-endgame">00</span></p>
+    <p>Tempo: <span id="span-time-endgame">00:00:00</span></p>
+    <div class="button-start container-buttons-endgame">
+      <a href="../index.html" id="btn-newgame" class="btn-game btn-endgame">Novo jogo</a>
+      <a id="btn-scoreboard" class="btn-game btn-endgame">Placar</a>
 
+    </div>
+  </div>
 </body>
 
 </html>
