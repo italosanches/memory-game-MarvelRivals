@@ -145,10 +145,45 @@ function pauseTimer() {
 
 function populatePointsAndTimerEndGame() {
 	document.querySelector("#span-pontuation-endgame").textContent = currentScore > 10 ? currentScore : `0${currentScore}`;
+	const timer = getTimer();
+	document.querySelector("#span-time-endgame").innerHTML = timer;
+}
+function getTimer() {
 	let hour = document.getElementById("hour").innerText;
 	let minute = document.getElementById("minute").innerText;
 	let second = document.getElementById("second").innerText;
-	document.querySelector("#span-time-endgame").innerHTML = `${hour}:${minute}:${second}`;
+	return `${hour}:${minute}:${second}`;
+}
+
+function createUserAndScoreToPost() {
+	const pontuation = document.querySelector("#span-pontuation").textContent;
+	const time = getTimer();
+	const dateGame = new Date().toISOString().slice(0, 10);
+	const newUser = {
+		userName: user.user,
+		score: +pontuation,
+		cardsQuantity: +user.cardsQuantity,
+		gameTime: time,
+		gameDate: dateGame,
+	};
+	return newUser;
+}
+async function postScoreAndUser() {
+	const urlPost = "https://localhost:7270/addScore";
+	const userAndScore = createUserAndScoreToPost();
+	try {
+		const response = await fetch(urlPost, {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(userAndScore),
+		});
+		if (!response.ok) {
+			throw new Error(`Erro ao salvar os dados - Status:${response.status}
+				${response.statusText}`);
+		}
+	} catch (error) {
+		throw error;
+	}
 }
 function resetGame() {
 	resetTimer();
@@ -165,8 +200,15 @@ function startGame() {
 	document.querySelector("#btn-start-game").textContent = "Reiniciar jogo";
 }
 
-function endGame() {
+async function endGame() {
 	pauseTimer();
-	document.querySelector("#overlay-endgame").classList.remove("hidden");
 	populatePointsAndTimerEndGame();
+	try {
+		await postScoreAndUser();
+	} catch (error) {
+		const spanError = document.querySelector("#span-error");
+		spanError.textContent = `Erro: ${error.message}`;
+		spanError.classList.remove("hidden");
+	}
+	document.querySelector("#overlay-endgame").classList.remove("hidden");
 }
