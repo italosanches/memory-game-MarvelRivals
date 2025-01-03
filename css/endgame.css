@@ -1,0 +1,61 @@
+@import url(./variables.css);
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: var(--font--default);
+}
+html {
+	height: 100vh;
+}
+body {
+	background-color: var(--yellow-color);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+a {
+	text-decoration: none;
+}
+
+.table-score {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	overflow: auto;
+	margin-top: 2rem;
+}
+.table-row {
+	display: flex;
+	width: 100%;
+}
+.table-cell {
+	width: 25%;
+	padding: 0.5rem;
+	border-bottom: 1px solid var(--white-color);
+	text-align: center;
+	overflow-wrap: break-word;
+}
+.header {
+	font-size: 1.2rem;
+}
+.header .table-cell {
+	font-weight: bold;
+	background-color: var(--white-color);
+	border-top: 1px solid var(--white-color);
+}
+
+@media (min-width: 768px) {
+	.table-score {
+		width: 90%;
+	}
+	.header {
+		font-size: 1.6rem;
+	}
+	.table-cell {
+		font-size: 1.2rem;
+	}
+}
