@@ -10,6 +10,5 @@ function setSessionStorageInGameStart(e) {
 	e.preventDefault();
 	const usernameAndCardQuantity = getOptionsAndUser();
 	sessionStorage.setItem("userAndCardsQuantity", JSON.stringify(usernameAndCardQuantity));
-	console.log("foi");
 	window.location.href = "../game/game.html";
 }
