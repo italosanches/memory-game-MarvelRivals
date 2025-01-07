@@ -156,6 +156,12 @@ function getTimer() {
 	return `${hour}:${minute}:${second}`;
 }
 
+function displayError(error){
+	const spanError = document.querySelector("#span-error");
+	spanError.textContent = error.message == 'Failed to fetch' ? 'Erro ao gravar pontuação' : `Erro: ${error.message}`;
+	spanError.classList.remove("hidden");
+}
+
 function createUserAndScoreToPost() {
 	const pontuation = document.querySelector("#span-pontuation").textContent;
 	const time = getTimer();
@@ -207,9 +213,7 @@ async function endGame() {
 	try {
 		await postScoreAndUser();
 	} catch (error) {
-		const spanError = document.querySelector("#span-error");
-		spanError.textContent = `Erro: ${error.message}`;
-		spanError.classList.remove("hidden");
+		displayError(error);
 	}
 	document.querySelector("#overlay-endgame").classList.remove("hidden");
 }
