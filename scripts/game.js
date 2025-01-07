@@ -88,10 +88,10 @@ function createCard(card, indexCard) {
 function createCardFront() {
 	const cardFront = document.createElement("div");
 	cardFront.classList.add("card-front");
-	const imageCardBack = document.createElement("img");
-	imageCardBack.src = "../assets/images/logo.webp";
-	imageCardBack.classList.add("img-cardFront");
-	cardFront.appendChild(imageCardBack);
+	const imageCardFront = document.createElement("img");
+	imageCardFront.src = "../assets/images/logo.webp";
+	imageCardFront.classList.add("img-cardFront");
+	cardFront.appendChild(imageCardFront);
 	return cardFront;
 }
 function createCardBack(card) {
