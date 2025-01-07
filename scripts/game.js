@@ -99,6 +99,7 @@ function createCardBack(card) {
 	cardBack.classList.add("card-back");
 	cardBack.dataset.value = card.value;
 	cardBack.innerText = card.value;
+	cardBack.style.backgroundImage = `url('${card.imageSrc}')`
 	return cardBack;
 }
 function renderCards(cards) {
