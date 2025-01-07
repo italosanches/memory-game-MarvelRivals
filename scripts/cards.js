@@ -1,14 +1,14 @@
 const cards = [
-	{ value: "Thor", image: "" },
-	{ value: "Loki", image: "" },
-	{ value: "Iron First", image: "" },
-	{ value: "Jeff", image: "" },
-	{ value: "Doctor Strange", image: "" },
-	{ value: "Punisher", image: "" },
-	{ value: "Hulk", image: "" },
-	{ value: "Spider Man", image: "" },
-	{ value: "Venon", image: "" },
-	{ value: "Wolverine", image: "" },
+	{ value: "Thor", imageSrc: "../assets/images/persons-imgs/thor.png" },
+	{ value: "Loki", imageSrc: "../assets/images/persons-imgs/loki.png" },
+	{ value: "Iron Fist", imageSrc: "../assets/images/persons-imgs/ironfist.png" },
+	{ value: "Jeff", imageSrc: "../assets/images/persons-imgs/jeff.png" },
+	{ value: "Doctor Strange", imageSrc: "../assets/images/persons-imgs/drstrange.png" },
+	{ value: "Punisher", imageSrc: "../assets/images/persons-imgs/punisher.png" },
+	{ value: "Hulk", imageSrc: "../assets/images/persons-imgs/hulk.png" },
+	{ value: "Spider Man", imageSrc: "../assets/images/persons-imgs/spider-man.png" },
+	{ value: "Venon", imageSrc: "../assets/images/persons-imgs/venom.png" },
+	{ value: "Wolverine", imageSrc: "../assets/images/persons-imgs/wolverine.png" },
 ];
 function createArrayCards(numberOfCards) {
 	const cardsRondomized = cards.sort(() => Math.random() - 0.5);

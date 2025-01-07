@@ -51,16 +51,20 @@ main {
 	max-width: 1000px;
 	margin: 0 auto;
 	padding: 1rem;
+	font-size: 1.4rem;
 }
 
 .card-game {
 	width: 100%;
-	height: 130px;
+	height: 10rem;
 	transform-style: preserve-3d;
 	transition: all 0.8s ease;
 	position: relative;
 	border-radius: 1rem;
+
 }
+
+
 
 .card-front,
 .card-back {
@@ -82,8 +86,13 @@ main {
 	background-color: var(--white-color);
 }
 .card-back {
-	background-color: aqua;
+	background-color: var(--logo-color);
+	color: var(--white-color);
 	transform: rotateY(180deg);
+	background-size: contain;
+	background-position-x: center;
+	background-position-y: center;
+	background-repeat: no-repeat;
 }
 
 .flipCard {
