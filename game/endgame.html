@@ -1,35 +1,24 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="../scripts/finalgame.js" defer></script>
+		<link rel="stylesheet" href="../css/endgame.css" />
+		<title>Pontuações</title>
+	</head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="../scripts/finalgame.js"></script>
-  <link rel="stylesheet" href="../css/endgame.css">
-  <title>Pontuações</title>
-</head>
-
-<body>
-  <div class="table-score">
-    <div class="table-row header">
-      <div class="table-cell">Usuario</div>
-      <div class="table-cell">Quantida de cartas</div>
-      <div class="table-cell">Pontuacao</div>
-      <div class="table-cell">Tempo</div>
-    </div>
-    <div class="table-row">
-      <div class="table-cell">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
-      <div class="table-cell">12</div>
-      <div class="table-cell">11</div>
-      <div class="table-cell">1111</div>
-    </div>
-    <div class="table-row">
-      <div class="table-cell">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
-      <div class="table-cell">12</div>
-      <div class="table-cell">11</div>
-      <div class="table-cell">1111</div>
-    </div>
-  </div>
-</body>
-
+	<body>
+		<main>
+			<div class="container-filtro-scores">
+				<h2>Filtro de Ranking</h2>
+				<div class="container-buttons-scores">
+					<button value="12" class="button-score">12 Cartas</button>
+					<button value="18" class="button-score">18 Cartas</button>
+					<button value="20" class="button-score">20 Cartas</button>
+				</div>
+			</div>
+			<div id="table-score"></div>
+		</main>
+	</body>
 </html>
