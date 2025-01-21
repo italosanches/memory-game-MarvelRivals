@@ -131,3 +131,11 @@ input[type="radio"]::after {
 #btn-start-game:active {
 	transform: scale(0.9);
 }
+
+.hidden {
+	visibility: hidden;
+}
+#error-input {
+	font-size: 1.2rem;
+	color: var(--red-color);
+}
