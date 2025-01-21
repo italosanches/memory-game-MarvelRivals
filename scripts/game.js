@@ -1,4 +1,5 @@
 import createArrayOfRandomCards from "./cards.js";
+import { getUserAndOptionsFromSessionStorage } from "./utils.js";
 document.addEventListener("DOMContentLoaded", getUserAndOptionsFromSessionStorage);
 
 document.querySelector("#btn-start-game").addEventListener("click", startGame);
@@ -10,11 +11,6 @@ let second = 0,
 	hour = 0;
 let cron;
 const pointsToWin = user.cardsQuantity / 2;
-
-function getUserAndOptionsFromSessionStorage() {
-	const optionsAndUser = JSON.parse(window.sessionStorage.getItem("userAndCardsQuantity"));
-	return optionsAndUser;
-}
 
 function onClickCard() {
 	if (this.classList.contains("card-found") || this.classList.contains("active-card")) {

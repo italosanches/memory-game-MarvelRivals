@@ -1,5 +1,5 @@
-// import { getUserAndOptionsFromSessionStorage } from "./util.js";
-
+import { getUserAndOptionsFromSessionStorage } from "./utils.js";
+import { formatToLocalDate } from "./utils.js";
 document.addEventListener("DOMContentLoaded", () => {
 	const userAndCardsQuantity = getUserAndOptionsFromSessionStorage().cardsQuantity;
 	createTableScore(userAndCardsQuantity);
@@ -13,10 +13,6 @@ for (const button of buttonsFilters) {
 	});
 }
 
-function getUserAndOptionsFromSessionStorage() {
-	const optionsAndUser = JSON.parse(window.sessionStorage.getItem("userAndCardsQuantity"));
-	return optionsAndUser;
-}
 async function createTableScore(cardsQuantity) {
 	const tableScore = document.querySelector("#table-score");
 	const scoresFromUser = await getScores(cardsQuantity);
@@ -57,7 +53,6 @@ function createRowsAndCellsToTable(scoresFromUsers) {
 }
 
 function classifyRankingUsers(scoresFromUser) {
-	console.log(scoresFromUser);
 	for (let i = 0; i < scoresFromUser.length; i++) {
 		scoresFromUser[i].ranking = i + 1;
 	}
@@ -67,7 +62,7 @@ function classifyRankingUsers(scoresFromUser) {
 function populateCell(userScore) {
 	const cells = [];
 	const { cardsQuantity, gameDate, gameTime, userName, ranking } = userScore;
-	const data = [ranking, userName, cardsQuantity, gameDate, gameTime];
+	const data = [ranking, userName, cardsQuantity, formatToLocalDate(gameDate), gameTime];
 	data.forEach((e) => {
 		const tableCell = document.createElement("div");
 		tableCell.classList.add("table-cell");
@@ -91,10 +86,6 @@ async function getScores(cardsQuantity) {
 }
 
 function clearScores() {
-	// const rowsPontuation = document.querySelectorAll(".row-pontuation");
-	// rowsPontuation.forEach((e) => {
-	// 	e.innerHTML = "";
-	// });
 	const divTableScore = document.querySelector("#table-score");
 	divTableScore.innerHTML = "";
 }
