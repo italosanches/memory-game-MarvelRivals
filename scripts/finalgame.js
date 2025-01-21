@@ -12,6 +12,7 @@ for (const button of buttonsFilters) {
 		await createTableScore(this.value);
 	});
 }
+document.querySelector("#button-NewGame").addEventListener("click", newGame);
 
 async function createTableScore(cardsQuantity) {
 	const tableScore = document.querySelector("#table-score");
@@ -88,4 +89,12 @@ async function getScores(cardsQuantity) {
 function clearScores() {
 	const divTableScore = document.querySelector("#table-score");
 	divTableScore.innerHTML = "";
+}
+function newGame(e) {
+	e.preventDefault();
+	clearSession();
+	window.location.href = "../index.html";
+}
+function clearSession() {
+	window.sessionStorage.clear();
 }
