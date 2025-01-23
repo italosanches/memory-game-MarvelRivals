@@ -161,7 +161,7 @@ function displayError(error) {
 function createUserAndScoreToPost() {
 	const pontuation = document.querySelector("#span-pontuation").textContent;
 	const time = getTimer();
-	const dateGame = new Date().toISOString().slice(0, 10);
+	const dateGame = new Date().toLocaleDateString("en-CA");
 	const newUser = {
 		userName: user.user,
 		score: +pontuation,
