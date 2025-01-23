@@ -172,7 +172,7 @@ function createUserAndScoreToPost() {
 	return newUser;
 }
 async function postScoreAndUser() {
-	const urlPost = "https://localhost:7270/addScore";
+	const urlPost = "https://memorygame-bngtg8fee8gcbyd7.brazilsouth-01.azurewebsites.net/addScore";
 	const userAndScore = createUserAndScoreToPost();
 	try {
 		const response = await fetch(urlPost, {
