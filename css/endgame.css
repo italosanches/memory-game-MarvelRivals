@@ -40,7 +40,8 @@ a {
 	gap: 1rem;
 }
 
-.button-score {
+.button-score,
+#button-NewGame {
 	background-color: var(--red-color);
 	color: var(--white-color);
 	border: none;
@@ -50,6 +51,11 @@ a {
 	cursor: pointer;
 	text-align: center;
 	margin-top: 0.5rem;
+}
+#button-NewGame {
+	width: 100%;
+	min-width: 15rem;
+	max-width: 20rem;
 }
 
 #table-score {
@@ -81,7 +87,8 @@ a {
 	border-top: 1px solid var(--white-color);
 }
 
-.button-score:active {
+.button-score:active,
+#button-NewGame:active {
 	transform: scale(0.9);
 }
 
