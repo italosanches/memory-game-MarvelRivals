@@ -1,5 +1,7 @@
 import createArrayOfRandomCards from "./cards.js";
 import { getUserAndOptionsFromSessionStorage } from "./utils.js";
+import { calculateTimeFromGame } from "./utils.js";
+
 document.addEventListener("DOMContentLoaded", getUserAndOptionsFromSessionStorage);
 
 document.querySelector("#btn-start-game").addEventListener("click", startGame);
@@ -11,6 +13,9 @@ let second = 0,
 	hour = 0;
 let cron;
 const pointsToWin = user.cardsQuantity / 2;
+let timeStartGame;
+let timeEndGame;
+let timerFinal;
 
 function onClickCard() {
 	if (this.classList.contains("card-found") || this.classList.contains("active-card")) {
@@ -142,15 +147,15 @@ function pauseTimer() {
 
 function populatePointsAndTimerEndGame() {
 	document.querySelector("#span-pontuation-endgame").textContent = currentScore > 10 ? currentScore : `0${currentScore}`;
-	const timer = getTimer();
+	const timer = timerFinal;
 	document.querySelector("#span-time-endgame").innerHTML = timer;
 }
-function getTimer() {
-	let hour = document.getElementById("hour").innerText;
-	let minute = document.getElementById("minute").innerText;
-	let second = document.getElementById("second").innerText;
-	return `${hour}:${minute}:${second}`;
-}
+// function getTimer() {
+// 	let hour = document.getElementById("hour").innerText;
+// 	let minute = document.getElementById("minute").innerText;
+// 	let second = document.getElementById("second").innerText;
+// 	return `${hour}:${minute}:${second}`;
+// }
 
 function displayError(error) {
 	const spanError = document.querySelector("#span-error");
@@ -160,7 +165,7 @@ function displayError(error) {
 
 function createUserAndScoreToPost() {
 	const pontuation = document.querySelector("#span-pontuation").textContent;
-	const time = getTimer();
+	const time = timerFinal;
 	const dateGame = new Date().toLocaleDateString("en-CA");
 	const newUser = {
 		userName: user.user,
@@ -172,8 +177,10 @@ function createUserAndScoreToPost() {
 	return newUser;
 }
 async function postScoreAndUser() {
-	const urlPost = "https://memorygame-bngtg8fee8gcbyd7.brazilsouth-01.azurewebsites.net/addScore";
+	// const urlPost = "https://memorygame-bngtg8fee8gcbyd7.brazilsouth-01.azurewebsites.net/addScore";
+	const urlPost = "http://localhost:5256/addScore";
 	const userAndScore = createUserAndScoreToPost();
+	console.log(userAndScore);
 	try {
 		const response = await fetch(urlPost, {
 			method: "POST",
@@ -197,6 +204,7 @@ function resetGame() {
 
 function startGame() {
 	resetGame();
+	timeStartGame = new Date();
 	const cards = createArrayOfRandomCards(user.cardsQuantity);
 	renderCards(cards);
 	startTimer();
@@ -205,6 +213,8 @@ function startGame() {
 
 async function endGame() {
 	pauseTimer();
+	timeEndGame = new Date();
+	timerFinal = calculateTimeFromGame(timeStartGame, timeEndGame);
 	populatePointsAndTimerEndGame();
 	try {
 		await postScoreAndUser();

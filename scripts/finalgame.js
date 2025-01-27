@@ -1,5 +1,7 @@
 import { getUserAndOptionsFromSessionStorage } from "./utils.js";
 import { formatToLocalDate } from "./utils.js";
+import { formatTimeToFront } from "./utils.js";
+
 document.addEventListener("DOMContentLoaded", () => {
 	const userAndCardsQuantity = getUserAndOptionsFromSessionStorage().cardsQuantity;
 	createTableScore(userAndCardsQuantity);
@@ -17,6 +19,8 @@ document.querySelector("#button-NewGame").addEventListener("click", newGame);
 async function createTableScore(cardsQuantity) {
 	const tableScore = document.querySelector("#table-score");
 	const scoresFromUser = await getScores(cardsQuantity);
+	console.log(scoresFromUser);
+	scoresFromUser.forEach((e) => (e.gameTime = formatTimeToFront(e.gameTime)));
 	const classifyScoresFromUsers = classifyRankingUsers(scoresFromUser);
 	const tableRows = createRowsAndCellsToTable(classifyScoresFromUsers);
 	clearScores();
@@ -73,15 +77,16 @@ function populateCell(userScore) {
 	return cells;
 }
 async function getScores(cardsQuantity) {
-	const url = `https://memorygame-bngtg8fee8gcbyd7.brazilsouth-01.azurewebsites.net/getScores?cardsQuantityes=${cardsQuantity}`;
-	console.log(url);
+	// const url = `https://memorygame-bngtg8fee8gcbyd7.brazilsouth-01.azurewebsites.net/getScores?cardsQuantityes=${cardsQuantity}`;
+	const url = `http://localhost:5256/getScores?cardsQuantityes=${cardsQuantity}`;
+	// console.log(url);
 	try {
 		const response = await fetch(url);
 		if (!response.ok) {
 			throw new Error(`Erro ao fazer requisição ${response.statusText}`);
 		}
 		const responseJson = await response.json();
-		console.log(await responseJson);
+		// console.log(await responseJson);
 		return responseJson;
 	} catch (error) {}
 }
