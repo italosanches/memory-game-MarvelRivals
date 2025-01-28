@@ -177,8 +177,7 @@ function createUserAndScoreToPost() {
 	return newUser;
 }
 async function postScoreAndUser() {
-	// const urlPost = "https://memorygame-bngtg8fee8gcbyd7.brazilsouth-01.azurewebsites.net/addScore";
-	const urlPost = "http://localhost:5256/addScore";
+	const urlPost = "https://memorygame-bngtg8fee8gcbyd7.brazilsouth-01.azurewebsites.net/addScore";
 	const userAndScore = createUserAndScoreToPost();
 	console.log(userAndScore);
 	try {

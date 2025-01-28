@@ -77,8 +77,7 @@ function populateCell(userScore) {
 	return cells;
 }
 async function getScores(cardsQuantity) {
-	// const url = `https://memorygame-bngtg8fee8gcbyd7.brazilsouth-01.azurewebsites.net/getScores?cardsQuantityes=${cardsQuantity}`;
-	const url = `http://localhost:5256/getScores?cardsQuantityes=${cardsQuantity}`;
+	const url = `https://memorygame-bngtg8fee8gcbyd7.brazilsouth-01.azurewebsites.net/getScores?cardsQuantityes=${cardsQuantity}`;
 	// console.log(url);
 	try {
 		const response = await fetch(url);
